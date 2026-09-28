@@ -41,6 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      PUBLIC_URL: ${{ vars.PUBLIC_URL || 'https://k4-l3a-dinhthiminhtam-2a202602433.onrender.com' }}
     steps:
       - name: Trigger Render deploy
         if: env.RENDER_DEPLOY_HOOK != ''
@@ -49,4 +50,4 @@ jobs:
         if: env.RENDER_DEPLOY_HOOK != ''
         run: |
           sleep 45
-          curl --fail --silent --show-error "${{ vars.PUBLIC_URL }}/health"
+          curl --fail --silent --show-error "$PUBLIC_URL/health"
